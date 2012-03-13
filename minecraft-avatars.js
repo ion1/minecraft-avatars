@@ -42,10 +42,53 @@
         width  = 4 + armW + bodyW + armW,
         height = 4 + headH + bodyH + legH;
 
-    function hasAlpha() {
+    function hasAlpha(img) {
         // FIXME: Figure out a good way to test whether the image has an alpha
         // channel.
 
+        try {
+            // This doesn’t work in most browsers. We don’t have access to the
+            // pixel data in a tainted canvas.
+            // https://developer.mozilla.org/en/CORS_Enabled_Image#What_is_a_.22tainted.22_canvas.3F
+
+            // The head accessory is contained within this area.
+            var hatX = 32,
+                hatY = 0,
+                hatW = 32,
+                hatH = 8,
+
+                tempCtx,
+                data,
+
+                i,
+                xTL,
+                xTR,
+                y,
+                aTL,
+                aTR;
+
+            tempCtx = $('<canvas/>').
+                attr({ width: hatW, height: hatH }).
+                get(0).
+                getContext('2d');
+            tempCtx.drawImage(img, hatX, hatY, hatW, hatH, 0, 0, hatW, hatH);
+            data = tempCtx.getImageData(0, 0, hatW, hatH).data;
+
+            // Traverse the area diagonally starting from the top left and the
+            // top right corners. If any of the pixels is translucent, the
+            // image has an alpha channel.
+            for (i = 0; i < Math.max(hatW, hatH); i = i + 1) {
+                xTL = i % hatW;
+                xTR = ((-i - 1) % hatW + hatW) % hatW;
+                y   = i % hatH;
+                aTL = data[(hatW * y + xTL) * 4 + 3];
+                aTR = data[(hatW * y + xTR) * 4 + 3];
+
+                if (aTL < 255 || aTR < 255) {
+                    return true;
+                }
+            }
+        } catch (e) { }
         return false;
     }
 
