@@ -17,7 +17,7 @@ Given `someElement`, run
 
 ```javascript
 $(someElement).minecraftAvatar({ player: 'PlayerName' });
-g``
+```
 
 to render the avatar inside `someElement`. The element will be emptied first.
 
