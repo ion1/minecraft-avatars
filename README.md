@@ -32,7 +32,7 @@ You can alternatively pass the player name as a data attribute:
 $('.m').minecraftAvatar();
 ```
 
-See the demo stylesheet for hints about how to scale the avatars using CSS.
+See the [demo stylesheet](https://github.com/ion1/minecraft-avatars/blob/master/demo/style.css) for hints about how to scale the avatars using CSS.
 
 The following callbacks are available:
 
