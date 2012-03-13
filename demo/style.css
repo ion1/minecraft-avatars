@@ -1,0 +1,20 @@
+body {
+  background-color: #ddd;
+  max-width: 40em;
+}
+
+img {
+  vertical-align: middle;
+}
+
+.big   .minecraft-avatar-canvas { width: 40px; height: 72px; }
+.small .minecraft-avatar-canvas { width: 20px; height: 36px; }
+
+.minecraft-avatar-canvas {
+  /* http://stackoverflow.com/questions/7615009/disable-interpolation-when-scaling-a-canvas */
+  image-rendering: optimizeSpeed;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: optimize-contrast;
+  -ms-interpolation-mode: nearest-neighbor;
+}

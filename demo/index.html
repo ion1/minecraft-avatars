@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Minecraft avatars</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+    <script type="text/javascript" src="jquery-ui-1.8.18.position.min.js"></script>
+    <script type="text/javascript" src="minecraft-avatars.min.js"></script>
+    <script type="text/javascript">
+      'use strict';
+
+      function nowAndOnResize(f) {
+        f();
+        $(window).resize(f);
+      }
+
+      function addShadow(elem) {
+        elem = $(elem);
+
+        var w = elem.width(),
+            h = elem.height(),
+            sw = w + 34 * (w / (20 * 4)),
+            sh = h + 34 * (h / (36 * 4)),
+            ox = w / 20 * 1,
+            oy = h / 36 * 1,
+            shElem;
+
+        shElem = $('<img alt=""/>').
+          attr({ src: 'shadow.png' }).
+          css('opacity',  0.3).
+          css('position', 'absolute').
+          css('width',    sw + 'px').
+          css('height',   sh + 'px').
+          css('z-index',  -1000).
+          insertBefore(elem);
+
+        nowAndOnResize(function() {
+          shElem.position({ offset: ox + ' ' + oy, of: elem });
+        });
+      }
+
+      $(function () { $('.mca').minecraftAvatar({ onCreate: addShadow }); });
+
+      $(function () {
+        var form = $('<form/>');
+
+        var playerLine = $('<div/>').appendTo(form);
+        var playerLabel = $('<label for="player">Player:&nbsp;</label>').appendTo(playerLine);
+        var playerField = $('<input id="player" type="text"/>').appendTo(playerLine);
+
+        var avatarDiv = $('<div class="big"/>');
+        form.submit(function () {
+          avatarDiv.minecraftAvatar({ player: playerField.val(), onCreate: addShadow });
+          return false;
+        });
+        $('#selector').append(form).append(avatarDiv);
+        playerField.focus();
+      });
+    </script>
+  </head>
+  <body>
+    <h1>Minecraft avatars</h1>
+    <p>
+      Work-in-progress code to draw a representation of a Minecraft skin using JavaScript.
+    </p>
+    <div class="big">
+      <span class="mca" data-player="achin" title="achin">☺</span>
+      <span class="mca" data-player="agrif" title="agrif">☺</span>
+      <span class="mca" data-player="aheadley" title="aheadley">☺</span>
+      <span class="mca" data-player="AutumnAfternoon" title="AutumnAfternoon">☺</span>
+      <span class="mca" data-player="Boblonious" title="Boblonious">☺</span>
+      <span class="mca" data-player="brownan" title="brownan">☺</span>
+      <span class="mca" data-player="contre" title="contre">☺</span>
+      <span class="mca" data-player="CounterPillow" title="CounterPillow">☺</span>
+      <span class="mca" data-player="duckman" title="duckman">☺</span>
+      <span class="mca" data-player="Eminence32" title="Eminence32">☺</span>
+      <span class="mca" data-player="Etho" title="Etho">☺</span>
+      <span class="mca" data-player="hajotus" title="hajotus">☺</span>
+      <span class="mca" data-player="jcll" title="jcll">☺</span>
+      <span class="mca" data-player="joosa" title="joosa">☺</span>
+      <span class="mca" data-player="McLad76" title="McLad76">☺</span>
+      <span class="mca" data-player="MustaKaapo" title="MustaKaapo">☺</span>
+      <span class="mca" data-player="nosrepa" title="nosrepa">☺</span>
+      <span class="mca" data-player="Notch" title="Notch">☺</span>
+      <span class="mca" data-player="Pheagey" title="Pheagey">☺</span>
+      <span class="mca" data-player="ramiel" title="ramiel">☺</span>
+      <span class="mca" data-player="rantomi" title="rantomi">☺</span>
+      <span class="mca" data-player="SethBling" title="SethBling">☺</span>
+      <span class="mca" data-player="TJ09" title="TJ09">☺</span>
+      <span class="mca" data-player="zoooby4" title="zoooby4">☺</span>
+    </div>
+    <div class="small">
+      <span class="mca" data-player="achin" title="achin">☺</span>
+      <span class="mca" data-player="agrif" title="agrif">☺</span>
+      <span class="mca" data-player="aheadley" title="aheadley">☺</span>
+      <span class="mca" data-player="AutumnAfternoon" title="AutumnAfternoon">☺</span>
+      <span class="mca" data-player="Boblonious" title="Boblonious">☺</span>
+      <span class="mca" data-player="brownan" title="brownan">☺</span>
+      <span class="mca" data-player="contre" title="contre">☺</span>
+      <span class="mca" data-player="CounterPillow" title="CounterPillow">☺</span>
+      <span class="mca" data-player="duckman" title="duckman">☺</span>
+      <span class="mca" data-player="Eminence32" title="Eminence32">☺</span>
+      <span class="mca" data-player="Etho" title="Etho">☺</span>
+      <span class="mca" data-player="hajotus" title="hajotus">☺</span>
+      <span class="mca" data-player="jcll" title="jcll">☺</span>
+      <span class="mca" data-player="joosa" title="joosa">☺</span>
+      <span class="mca" data-player="McLad76" title="McLad76">☺</span>
+      <span class="mca" data-player="MustaKaapo" title="MustaKaapo">☺</span>
+      <span class="mca" data-player="nosrepa" title="nosrepa">☺</span>
+      <span class="mca" data-player="Notch" title="Notch">☺</span>
+      <span class="mca" data-player="Pheagey" title="Pheagey">☺</span>
+      <span class="mca" data-player="ramiel" title="ramiel">☺</span>
+      <span class="mca" data-player="rantomi" title="rantomi">☺</span>
+      <span class="mca" data-player="SethBling" title="SethBling">☺</span>
+      <span class="mca" data-player="TJ09" title="TJ09">☺</span>
+      <span class="mca" data-player="zoooby4" title="zoooby4">☺</span>
+    </div>
+    <div id="selector"></div>
+    <p>
+      Alas, apparently one can’t tell Chromium to use nearest-neighbor filtering, resulting in blurry scaling. <a href="http://code.google.com/p/chromium/issues/detail?id=1502">Bug report</a>.
+    </p>
+    <p>
+      Head accessories aren’t composited over the face until we figure out a way to detect whether the skin has an alpha channel. Drawing the supposed head accessory over the face from a skin without an alpha channel results in a missing face.
+    </p>
+  </body>
+</html>
