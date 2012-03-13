@@ -17,7 +17,7 @@ Given `someElement`, run
 
 ```javascript
 $(someElement).minecraftAvatar({ player: 'PlayerName' });
-```
+g``
 
 to render the avatar inside `someElement`. The element will be emptied first.
 
@@ -53,7 +53,9 @@ $(someElement).minecraftAvatar({
 # TODO
 
 * Figure out a way to detect whether a skin has an alpha channel.
-  * Head accessories can’t be composited over the face until the detection can be done. Compositing a supposed accessory from a skin without an alpha channel results in a missing face.
-  * We can’t read pixel values from the skin images because of [a JavaScript security feature](https://developer.mozilla.org/en/CORS_Enabled_Image#What_is_a_.22tainted.22_canvas.3F).
+    * Head accessories can’t be composited over the face until the detection can be done. Compositing a supposed accessory from a skin without an alpha channel results in a missing face.
+    * We can’t read pixel values from the skin images because of [a JavaScript security feature](https://developer.mozilla.org/en/CORS_Enabled_Image#What_is_a_.22tainted.22_canvas.3F).
+        * The web server hosting the skin could add a HTTP header that gives in-browser JavaScript access to the pixel data, but adding it is “[currently not something [Amazon is] targeting with S3](https://forums.aws.amazon.com/thread.jspa?threadID=34281)”. If S3 had that feature, we could have kindly asked Mojang to turn it on for the skin images.
+    * The `hasAlpha` function controls whether head accessories are rendered and it returns a constant `false` at the moment.
 * Implement a mode that only displays the face.
 * Apparently we can’t tell Chromium to use nearest-neighbor filtering, resulting in blurry scaling. The small, non-scaled avatars still look good. [Bug report](http://code.google.com/p/chromium/issues/detail?id=1502).
